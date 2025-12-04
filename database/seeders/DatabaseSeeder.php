@@ -20,5 +20,11 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        // Seed CRM demo data and admin user
+        $this->call([
+            CRMSeeder::class,
+            AdminUserSeeder::class,
+        ]);
     }
 }
