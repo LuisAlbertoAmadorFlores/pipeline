@@ -3,7 +3,7 @@
 @section('content')
     <div class="max-w-7xl mx-auto px-4">
         <div class="flex items-center justify-between py-6">
-            <h1 class="text-2xl font-semibold">Pipeline de Ventas</h1>
+            <h1 class="text-2xl font-semibold">Pipeline Manager</h1>
 
             <form method="GET" class="flex items-center space-x-2">
                 <input name="q" class="border rounded px-3 py-2 shadow-sm w-64"
@@ -24,7 +24,7 @@
 
         <div id="pipeline" class="grid grid-cols-6 gap-4">
             @foreach ($stages as $stage)
-                <div class="bg-gray-50 rounded shadow-sm p-2">
+                <div class="bg-gray-50 rounded shadow-lg p-2">
                     <div class="font-medium mb-2">{{ $stage->name }}</div>
                     <div class="space-y-2 dropzone min-h-[120px]" data-stage-id="{{ $stage->id }}">
                         @php
@@ -44,7 +44,7 @@
                                 <div class="mt-2">
                                     @if (auth()->check() && auth()->user()->is_admin)
                                         <a href="{{ route('deals.edit', $deal) }}"
-                                            class="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded">Editar</a>
+                                            class="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded"><i class="fa-solid fa-pencil me-1"></i> Editar</a>
                                     @endif
                                 </div>
                             </div>

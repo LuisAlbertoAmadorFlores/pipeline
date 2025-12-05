@@ -1,0 +1,52 @@
+body {
+    margin: 0;
+    height: 100vh;
+    color: #4a4a4a; /* Gris oscuro suave */
+
+    /* --- FONDO AMIGABLE 2 --- */
+    background-color: #fa8bff;
+    background-image: linear-gradient(
+        45deg,
+        #0c0931 0%,
+        #2bd2ff 52%,
+        #2bff88 90%
+    );
+
+    /* Opción alternativa más "corporativa suave" si la de arriba es muy colorida:
+    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%); 
+    (Esta es gris/blanco nube, muy limpia) */
+
+    background-size: 300% 300%;
+    animation: flowCaliido 9s ease infinite;
+}
+
+@keyframes flowCaliido {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    color: #1a5f7a; /* Azul petróleo para el título */
+}
+p {
+    font-size: 1.5rem;
+    color: #4b6cb7;
+}
