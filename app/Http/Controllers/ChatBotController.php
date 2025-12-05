@@ -46,8 +46,8 @@ class ChatBotController extends Controller
             }
 
             $response = Http::timeout(60)->withoutVerifying()->post($this->deepseekUrl, [
-                'model' => 'deepseek-v3.1:671b-cloud',
-                'prompt' => 'Eres un asistente de soporte técnico especializado en ayudar a resolver problemas técnicos. Responde de manera clara, concisa y profesional en español. Usuario pregunta: ' . $message,
+                'model' => 'diin',
+                'prompt' => 'Eres un asistente de soporte técnico especializado en ayudar a resolver problemas técnicos. Responde de manera clara, concisa y profesional en español.No puedes responder cosas de otros temas. Usuario pregunta: ' . $message,
                 'stream' => false
             ]);
 

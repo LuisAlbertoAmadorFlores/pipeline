@@ -13,19 +13,19 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        <i class="fa-solid fa-chart-line me-1"></i> {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('deals.index')" :active="request()->routeIs('deals.*')">
-                        {{ __('Pipeline') }}
+                        <i class="fa-solid fa-timeline me-1"></i>{{ __('Pipeline') }}
                     </x-nav-link>
                     <x-nav-link :href="route('chatbot.index')" :active="request()->routeIs('chatbot.*')">
-                        {{ __('Chatbot') }}
+                        <i class="fa-solid fa-robot me-1"></i>{{ __('Chatbot') }}
                     </x-nav-link>
                     <x-nav-link :href="route('whatsapp.index')" :active="request()->routeIs('whatsapp.*')">
-                        {{ __('WhatsApp') }}
+                        <i class="fa-brands fa-whatsapp me-1"></i>{{ __('WhatsApp') }}
                     </x-nav-link>
                     <x-nav-link :href="route('emails.index')" :active="request()->routeIs('emails.*')">
-                        {{ __('Correos') }}
+                        <i class="fa-regular fa-envelope me-1"></i>{{ __('Correos') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -51,7 +51,7 @@
 
                     <x-slot name="content">
                         <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
+                            <i class="fa-regular fa-user me-1"></i> {{ __('Perfil') }}
                         </x-dropdown-link>
 
                         <!-- Authentication -->
@@ -61,7 +61,7 @@
                             <x-dropdown-link :href="route('logout')"
                                 onclick="event.preventDefault();
                                                 this.closest('form').submit();">
-                                {{ __('Log Out') }}
+                                <i class="fa-solid fa-arrow-right-to-bracket me-1"></i> {{ __('Cerrar Sesión') }}
                             </x-dropdown-link>
                         </form>
                     </x-slot>
