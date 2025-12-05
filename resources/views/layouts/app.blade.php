@@ -44,6 +44,7 @@
         <!-- No Bootstrap JS: using Tailwind + vanilla JS for interactivity -->
     </div>
     <script src="https://kit.fontawesome.com/50317f7937.js" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/ful.js') }}"></script>
 </body>
 
 </html>

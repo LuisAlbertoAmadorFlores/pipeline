@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Auth;
 
 class EmailController extends Controller
 {
@@ -16,12 +18,7 @@ class EmailController extends Controller
 
     public function fetch(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string',
-            'imap_server' => 'required|string',
-        ]);
-
+        $emailComercial = DB::table('correo_comercial')->where('idUser', Auth::user()->id)->first();
         // Verificar si la extensión IMAP está habilitada
         if (!extension_loaded('imap')) {
             return redirect()->route('emails.index')
@@ -29,9 +26,20 @@ class EmailController extends Controller
         }
 
         try {
-            $email = $request->input('email');
-            $password = $request->input('password');
-            $imapServer = $request->input('imap_server');
+            $email = $emailComercial->email_comercial;
+            $password = $emailComercial->clave;
+            switch ($emailComercial->proveedor) {
+                case 'Google':
+                    $imapServer = '{imap.gmail.com:993/imap/ssl}INBOX';
+                    break;
+                case 'Outlook':
+                    $imapServer = '{imap-mail.outlook.com:993/imap/ssl}INBOX';
+                    break;
+                case 'Yahoo':
+                    $imapServer = ' {imap.mail.yahoo.com:993/imap/ssl}INBOX';
+                    break;
+            }
+
 
             // Protegemos contra múltiples intentos rápidos que puedan bloquear la cuenta
             $attempts = session()->get('imap_attempts', 0);
@@ -86,6 +94,7 @@ class EmailController extends Controller
 
             // Obtener información del buzón
             $mailCheck = imap_mailboxmsginfo($mailbox);
+      
             $messageCount = $mailCheck->Nmsgs;
 
             // Obtener últimos 20 correos
@@ -97,7 +106,6 @@ class EmailController extends Controller
                     $header = imap_headerinfo($mailbox, $i);
                     $fromEmail = '';
                     $fromName = '';
-
                     if (isset($header->from) && is_array($header->from) && count($header->from) > 0) {
                         $from = $header->from[0];
                         $fromEmail = ($from->mailbox ?? '') . '@' . ($from->host ?? '');
